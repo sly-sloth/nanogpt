@@ -5,7 +5,11 @@ import argparse
 MAX_NEW_TOKENS = 128
 
 # parser = argparse.ArgumentParser()
-model = torch.load("shakespeare_blabber.pth", weights_only=False, map_location=device)
+model = GPTLanguageModel()
+state_dict = torch.load("shakespeare_blabber_state_dict.pth", map_location=device)
+model.load_state_dict(state_dict)
+model.eval()
+# model = torch.load("shakespeare_blabber.pth", weights_only=False, map_location=device)
 
 # parser.add_argument(
 #     "max_new_tokens",
